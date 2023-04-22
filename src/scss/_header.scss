@@ -1,0 +1,19 @@
+.header {
+  margin-top: 20px;
+
+  &__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px;
+    background-color: #0391c9;
+    border: 1px solid #000;
+    border-radius: 20px;
+  }
+
+  &__titile {
+    font-size: 1.5rem;
+    color: #fff;
+    font-weight: 700;
+  }
+}
