@@ -28,6 +28,7 @@ const formSelectUserElement = document.querySelector('#formSelectUser')
 const btnModalSaveElement = document.querySelector('#btnModalSave')
 const bannerElement = document.querySelector('#banner')
 const formElement = document.querySelector('#form')
+
 // listeners
 btnModalSaveElement.addEventListener('click', handleSubmitForm)
 // Handlers
@@ -37,7 +38,8 @@ function handleSubmitForm(event) {
   const content = formInputElement.value
   const description = formTextAreaElement.value
   const selectUser = formSelectUserElement.value
-  const todo = new Todo(content, description, selectUser)
+  const selectColor = formSelectColorElement.value
+  const todo = new Todo(content, description, selectUser, selectColor)
 
   data.push(todo)
   render(data, bannerElement)
@@ -46,27 +48,28 @@ function handleSubmitForm(event) {
 }
 
 // Constructors
-function Todo(title, description, user) {
+function Todo(title, description, user, bgColor) {
   this.id = new Date().getTime()
   this.title = title
   this.description = description
   this.user = user
   this.date = new Date().toISOString()
+  this.bgColor = bgColor
 }
 
 
 // Templates
 
 function buildTodoTemplate(todo) {
-  const date = new Date(todo.date).toLocaleString()
+  const date = new Date(todo.date).toLocaleDateString()
 
   return `
-    <div class="card">
+    <div class="card ${todo.bgColor}">
       <div class="card__top">
         ${todo.title}
         <div class="card__top-btn">
-          <button class="btn btn-success" id="edit">edit</button>
-          <button class="btn btn-warning" id="delete">delete</button>
+          <button class="btn btn-primary" id="edit">edit</button>
+          <button class="btn btn-secondary" id="delete">delete</button>
         </div>
       </div>
       <div class="card__body">
