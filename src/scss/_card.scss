@@ -1,17 +1,15 @@
 .card {
-  padding: 10px;
-  font-size: 1.2rem;
+  padding: 5px;
+  border: 2px solid #9e06df;
+  margin-bottom: 5px;
 
   &__top {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 1.2rem;
     font-weight: 700;
     margin-bottom: 15px;
   }
-
-  // &__top-btn {}
 
   &__body {
     display: flex;
@@ -20,11 +18,10 @@
     margin-bottom: 15px;
   }
 
-  &__text {
-    color: aqua;
-  }
+  // &__text {}
 
   // &__select {}
+
 
   &__footer {
     display: flex;
@@ -32,7 +29,10 @@
     align-items: center;
   }
 
-  // &__user {}
+  &__user {
+    text-align: left;
+    margin-bottom: 10px;
+  }
 
   // &__date {}
 }

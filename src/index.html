@@ -31,22 +31,25 @@
             <div id="banner" class="banner">
               <!-- <div class="card">
                 <div class="card__top">
-                  title
-                  <div class="card__top-btn">
-                    <button class="btn btn-primary" id="edit">edit</button>
-                    <button class="btn btn-secondary" id="delete">delete</button>
-                  </div>
+                  <h2>title</h2>
+                  <time class="card__date">time</time>
                 </div>
                 <div class="card__body">
                   <p class="card__text">Description</p>
+                </div>
+                <div class="card__user">
+                  <p class="card__user">User</p>
+                </div>
+                <div class="card__footer">
                   <select class="card__select" id="selectCard">
+                    <option checked>select status</option>
                     <option value="inProgress">inProgress</option>
                     <option value="done">done</option>
                   </select>
-                </div>
-                <div class="card__footer">
-                  <p class="card__user">User</p>
-                  <time class="card__date">time</time>
+                  <div class="card__btn">
+                    <button class="btn btn-primary" id="edit">edit</button>
+                    <button class="btn btn-danger" id="delete">remove</button>
+                  </div>
                 </div>
               </div> -->
             </div>
@@ -57,14 +60,14 @@
               <div class="content__title">In Progress</div>
               <span data-role="counter">0</span>
             </div>
-            <div class="banner"></div>
+            <div id="bannerInProgress" class="banner"></div>
           </div>
           <div id="done" class="content__col">
             <div class="content__inner bg-success">
               <div class="content__title">Done</div>
               <span data-role="counter">0</span>
             </div>
-            <div class="banner"></div>
+            <div id="bannerDone" class="banner"></div>
             <button type="button" class="btn btn-danger w-100 p-3">Delete all</button>
           </div>
         </div>
@@ -81,9 +84,8 @@
                 <input id="formInput" type="text" class="form__input w-100 mb-1">
                 <textarea id="formTextArea" class="form__textarea w-100 p-1" cols="30" rows="10"></textarea>
                 <select id="formSelectColor" class="form-select">
-                  <option selected>change banner color</option>
                   <option value="bg-success">success</option>
-                  <option value="bg-danger">danger</option>
+                  <option value="bg-info">info</option>
                   <option value="bg-warning">warning</option>
                 </select>
                 <select id="formSelectUser" class="form-select mt-2">

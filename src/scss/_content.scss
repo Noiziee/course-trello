@@ -1,14 +1,19 @@
 .content {
+  margin-bottom: 10px;
+
   &__row {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     text-align: center;
   }
 
   &__col {
-    width: 33.33333%;
+    width: calc(33.33333% - 10px);
     border: 1px solid #000;
     border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 1;
   }
 
   &__inner {
