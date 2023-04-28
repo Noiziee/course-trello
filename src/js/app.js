@@ -10,6 +10,8 @@ const formSelectUserElement = document.querySelector('#formSelectUser')
 const btnModalSaveElement = document.querySelector('#btnModalSave')
 const bannerElement = document.querySelector('#banner')
 const formElement = document.querySelector('#form')
+const editBtnElement = document.querySelector('#edit')
+
 // Constructors
 function Todo(title, description, user, bgColor) {
   this.id = new Date().getTime()
@@ -19,7 +21,8 @@ function Todo(title, description, user, bgColor) {
   this.date = new Date().toISOString()
   this.bgColor = bgColor
 }
-
+// init======================================
+render(data, bannerElement)
 // localStorage
 function getData() {
   return JSON.parse(localStorage.getItem('data')) || []
@@ -86,6 +89,7 @@ function clickAddModal() {
 }
 addBtnElement.addEventListener('click', clickAddModal)
 
+
 // Date===============================================================
 
 function createAt() {
@@ -96,6 +100,8 @@ setInterval(createAt, 1000);
 
 // listeners
 btnModalSaveElement.addEventListener('click', handleSubmitForm)
+window.addEventListener('beforeunload', handleBeforeUnload)
+
 // Handlers
 function handleSubmitForm(event) {
   event.preventDefault()
@@ -130,3 +136,4 @@ function handleClickDelete({ target }) {
 
 bannerElement.addEventListener('click', handleClickDelete)
 
+// ===================
