@@ -18,7 +18,7 @@ const selectUserElement = $('#selectUser')
 const formElement = $('#form')
 const inProgressElement = $('#inProgress')
 const doneElement = $('#done')
-const watchElement = $('#watch')
+const clockElement = $('#clock')
 const modalInstance = Modal.getOrCreateInstance(modalElement)
 
 // Init
@@ -115,3 +115,12 @@ function render(collection, wrapper) {
 function getModal() {
   modalInstance.show()
 }
+
+// Clock
+function clock() {
+  const date = new Date().getHours()
+  const date1 = new Date().getMinutes()
+  clockElement.innerHTML = `${date}:${date1}`
+}
+
+setInterval(clock, 1000)
