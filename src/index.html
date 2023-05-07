@@ -21,7 +21,7 @@
   </div>
   <div class="content">
     <div class="container">
-      <div class="content__row">
+      <div id="row" class="content__row">
         <!-- col Todo -->
         <div id="todo" class="content__col">
           <div class="content__top">
@@ -64,6 +64,43 @@
           </div>
           <div class="card"></div>
           <button class="btn btn-danger btn__todo">Remove All</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- modal -->
+  <div id="modal" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content modal__content">
+        <div class="modal-header">
+          <h5 class="modal-title">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="form" class="form" action="#">
+            <input id="modalTitle" class="modal__input" type="text" name="title">
+            <textarea id="modalTextarea" class="modal__textarea" name="description" cols="30" rows="10"></textarea>
+            <select id="selectColor" name="selectColor" class="card__select">
+              <option selected>Color</option>
+              <option value="bg-primary text-white">Primary</option>
+              <option value="bg-info text-dark">Info</option>
+              <option value="bg-warning text-dark">Warning</option>
+              <option value="bg-success text-white">Success</option>
+            </select>
+            <select id="selectUser" name="selectUser" class="card__select">
+              <option selected>Users</option>
+              <option value="Ivan">Ivan</option>
+              <option value="Denis">Denis</option>
+              <option value="Alex">Alex</option>
+              <option value="Nikita">Nikita</option>
+              <option value="Inna">Inna</option>
+            </select>
+          </form>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button id="saveBtnModal" type="submit" class="btn btn-primary" data-role="saveModal">Save changes</button>
         </div>
       </div>
     </div>
