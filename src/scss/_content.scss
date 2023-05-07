@@ -21,12 +21,12 @@
   &__col {
     width: calc(33.33333% - 10px);
     border: 1px solid #000;
-    border-radius: 20px;
-    min-height: 500px;
+    border-radius: 10px;
+    height: 500px;
     padding: 20px;
     display: flex;
     flex-direction: column;
-    // overflow: hidden;
-    // overflow-y: auto;
+    overflow: hidden;
+    overflow-y: auto;
   }
 }
