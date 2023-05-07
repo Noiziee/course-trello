@@ -1,19 +1,18 @@
 .header {
-  margin-top: 20px;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 
   &__row {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 50px;
-    background-color: #0391c9;
-    border: 1px solid #000;
-    border-radius: 20px;
+    justify-content: space-between;
+    background-color: #07f2e6;
+    padding: 0 20px;
+    border-radius: 30px;
+    border: 1px solid #041ff2;
   }
 
-  &__titile {
-    font-size: 1.5rem;
-    color: #fff;
-    font-weight: 700;
-  }
+  // &__logo {}
+
+  // &__watch {}
 }

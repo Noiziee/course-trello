@@ -11,102 +11,63 @@
 </head>
 
 <body>
-  <header class="header">
+  <div class="header">
     <div class="container">
       <div class="header__row">
-        <div class="header__titile">Trello</div>
-        <time id="watch" data-role="time">Date</time>
+        <img class="header__logo" src="./images/trello.svg" alt="logo">
+        <div id="watch" class="header__watch">watch</div>
       </div>
     </div>
-  </header>
-  <main class="main">
+  </div>
+  <div class="content">
     <div class="container">
-      <div class="content">
-        <div class="content__row">
-          <div class="content__col">
-            <div class="content__inner">
-              <div class="content__title">Todo</div>
-              <span data-role="counter">0</span>
-            </div>
-            <div id="banner" class="banner">
-              <!-- <div class="card">
-                <div class="card__top">
-                  <h2>title</h2>
-                  <time class="card__date">time</time>
-                </div>
-                <div class="card__body">
-                  <p class="card__text">Description</p>
-                </div>
-                <div class="card__user">
-                  <p class="card__user">User</p>
-                </div>
-                <div class="card__footer">
-                  <select class="card__select" id="selectCard">
-                    <option checked>select status</option>
-                    <option value="inProgress">inProgress</option>
-                    <option value="done">done</option>
-                  </select>
-                  <div class="card__btn">
-                    <button class="btn btn-primary" id="edit">edit</button>
-                    <button class="btn btn-danger" id="delete">remove</button>
-                  </div>
-                </div>
-              </div> -->
-            </div>
-            <button type="button" class="btn btn-primary w-100 p-3" id="addBtn">Add todo</button>
+      <div class="content__row">
+        <!-- col Todo -->
+        <div id="todo" class="content__col">
+          <div class="content__top">
+            <h2 class="content__title">Todo</h2>
+            <span id="count">0</span>
           </div>
-          <div id="inProgress" class="content__col">
-            <div class="content__inner bg-secondary">
-              <div class="content__title">In Progress</div>
-              <span data-role="counter">0</span>
+          <div class="card">
+            <div class="card__wrapper">
+              <div class="card__top">
+                <h2 class="card__title">title</h2>
+                <span class="card__date">Date</span>
+              </div>
+              <div class="card__descr">Description</div>
+              <div class="card__user">User</div>
+              <select class="card__select">
+                <option selected>Select status</option>
+                <option value="Todo">Todo</option>
+                <option value="inProgress">In Progress</option>
+                <option value="Done">Done</option>
+              </select>
+              <button class="btn btn-primary">Edit</button>
+              <button class="btn btn-danger">Remove</button>
             </div>
-            <div id="bannerInProgress" class="banner"></div>
           </div>
-          <div id="done" class="content__col">
-            <div class="content__inner bg-success">
-              <div class="content__title">Done</div>
-              <span data-role="counter">0</span>
-            </div>
-            <div id="bannerDone" class="banner"></div>
-            <button type="button" class="btn btn-danger w-100 p-3">Delete all</button>
-          </div>
+          <button class="btn btn-primary btn__todo">Add Todo</button>
         </div>
-      </div>
-      <!-- Modal -->
-      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <form id="form" action="#">
-                <input id="formInput" type="text" class="form__input w-100 mb-1">
-                <textarea id="formTextArea" class="form__textarea w-100 p-1" cols="30" rows="10"></textarea>
-                <select id="formSelectColor" class="form-select">
-                  <option value="bg-success">success</option>
-                  <option value="bg-info">info</option>
-                  <option value="bg-warning">warning</option>
-                </select>
-                <select id="formSelectUser" class="form-select mt-2">
-                  <option selected>user</option>
-                  <option value="user1">user1</option>
-                  <option value="user2">user2</option>
-                  <option value="user3">user3</option>
-                </select>
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button id="btnModalClose" type="button" class="btn btn-secondary p-2"
-                data-bs-dismiss="modal">Close</button>
-              <button id="btnModalSave" type="button" class="btn btn-primary p-2" data-bs-dismiss="modal">Save
-                changes</button>
-            </div>
+        <!-- col inProgress -->
+        <div id="inProgress" class="content__col">
+          <div class="content__top">
+            <h2 class="content__title">In Progress</h2>
+            <span id="countProgress">0</span>
           </div>
+          <div class="card"></div>
+        </div>
+        <!-- col Done -->
+        <div id="done" class="content__col">
+          <div class="content__top">
+            <h2 class="content__title">Done</h2>
+            <span id="countDone">0</span>
+          </div>
+          <div class="card"></div>
+          <button class="btn btn-danger btn__todo">Remove All</button>
         </div>
       </div>
     </div>
-  </main>
+  </div>
 </body>
 
 </html>
