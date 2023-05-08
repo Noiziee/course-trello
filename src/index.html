@@ -23,46 +23,29 @@
     <div class="container">
       <div id="row" class="content__row">
         <!-- col Todo -->
-        <div id="todo" class="content__col">
-          <div class="content__top">
-            <h2 class="content__title">Todo</h2>
-            <span id="count">0</span>
+        <div class="content__col">
+          <div id="contentCountTodo" class="content__top">
+            <!-- <h2 class="content__title">Todo</h2>
+            <span id="count">0</span> -->
           </div>
-          <div id="card" class="card">
-            <!-- <div class="card__wrapper">
-              <div class="card__top">
-                <h2 class="card__title">title</h2>
-                <span class="card__date">Date</span>
-              </div>
-              <div class="card__descr">Description</div>
-              <div class="card__user">User</div>
-              <select class="card__select">
-                <option selected>Select status</option>
-                <option value="Todo">Todo</option>
-                <option value="inProgress">In Progress</option>
-                <option value="Done">Done</option>
-              </select>
-              <button class="btn btn-primary">Edit</button>
-              <button class="btn btn-danger">Remove</button>
-            </div> -->
-          </div>
+          <div id="todo" class="card"></div>
           <button id="btnAdd" class="btn btn-primary btn__todo" data-role="addTodo">Add Todo</button>
         </div>
         <!-- col inProgress -->
-        <div id="inProgress" class="content__col">
-          <div class="content__top">
-            <h2 class="content__title">In Progress</h2>
-            <span id="countProgress">0</span>
+        <div class="content__col">
+          <div id="contentCountProgress" class="content__top">
+            <!-- <h2 class="content__title">In Progress</h2>
+            <span id="countProgress">0</span> -->
           </div>
-          <div class="card"></div>
+          <div id="inProgress" class="card"></div>
         </div>
         <!-- col Done -->
-        <div id="done" class="content__col">
-          <div class="content__top">
-            <h2 class="content__title">Done</h2>
-            <span id="countDone">0</span>
+        <div class="content__col">
+          <div id="contentCountDone" class="content__top">
+            <!-- <h2 class="content__title">Done</h2>
+            <span id="countDone">0</span> -->
           </div>
-          <div class="card"></div>
+          <div id="done" class="card"></div>
           <button class="btn btn-danger btn__todo">Remove All</button>
         </div>
       </div>
@@ -97,7 +80,6 @@
             </select>
           </form>
         </div>
-
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           <button id="saveBtnModal" type="submit" class="btn btn-primary" data-role="saveModal">Save changes</button>
