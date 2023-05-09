@@ -9,6 +9,7 @@ function $(selector) {
 // Variables
 const todoElement = $('#todo')
 const btnAddElement = $('#btnAdd')
+const btnRemoveAllElement = $('#btnRemoveAll')
 const modalElement = $('#modal')
 const btnSaveModalElement = $('#saveBtnModal')
 const modalTitleElement = $('#modalTitle')
@@ -36,6 +37,7 @@ btnSaveModalElement.addEventListener('click', handleSubmitForm)
 rowElement.addEventListener('click', handleClickDelete)
 window.addEventListener('beforeunload', handleBeforeUnload)
 rowElement.addEventListener('change', handleChangeStatus)
+btnRemoveAllElement.addEventListener('click', handleClickRemoveAll)
 
 // LocalStorage
 function handleBeforeUnload() {
@@ -131,6 +133,18 @@ function handleClickDelete(event) {
     renderCounters(data, contentCountTodo, contentCountProgress, contentCountDone)
   }
 }
+// Remove All
+function handleClickRemoveAll() {
+  const messageWarning = confirm('are you sure you want to delete all todos')
+  if (messageWarning) {
+    data = data.filter((item) => {
+      item.status != 'Done'
+    })
+    render(data, todoElement, inProgressElement, doneElement)
+    renderCounters(data, contentCountTodo, contentCountProgress, contentCountDone)
+  }
+}
+
 
 // Render
 function render(data, todoColumn, progressColumn, doneColumn) {

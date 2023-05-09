@@ -1,11 +1,12 @@
 .card {
   border: none;
-  margin-bottom: 1rem;
+
 
   &__wrapper {
     padding: 5px;
     border: 1px solid #aaabaa;
     border-radius: 10px;
+    margin-bottom: 1rem;
   }
 
   &__top {
