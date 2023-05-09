@@ -33,7 +33,7 @@ renderCounters(data, contentCountTodo, contentCountProgress, contentCountDone)
 
 // Listener
 btnAddElement.addEventListener('click', getModal)
-btnSaveModalElement.addEventListener('click', handleSubmitForm)
+btnSaveModalElement.addEventListener('click', handleSubmitForm) // сделать submit
 rowElement.addEventListener('click', handleClickDelete)
 window.addEventListener('beforeunload', handleBeforeUnload)
 rowElement.addEventListener('change', handleChangeStatus)
