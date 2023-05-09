@@ -68,7 +68,7 @@ function buildTodoTemplate(todo) {
   const statusInProgress = todo.status == 'inProgress' ? 'selected' : ''
   const statusDone = todo.status == 'Done' ? 'selected' : ''
   return `
-    <div id="cardWrapper" class="card__wrapper ${todo.bgColor}">
+    <div class="card__wrapper ${todo.bgColor}">
       <div class="card__top">
         <h2 class="card__title">${todo.title}</h2>
         <span class="card__date">${date}</span>
@@ -191,17 +191,9 @@ function renderCounters(collection, todoCount, inProgressCount, doneCount) {
   let done = 0
 
   collection.forEach((item) => {
-    if (item.status == 'Todo') {
-      todo++
-    }
-
-    if (item.status == 'inProgress') {
-      inProgress++
-    }
-
-    if (item.status == 'Done') {
-      done++
-    }
+    item.status == 'Todo' ? todo++ : ''
+    item.status == 'inProgress' ? inProgress++ : ''
+    item.status == 'Done' ? done++ : ''
   })
 
   const templateTodo = buildTemplateTodo(todo)
@@ -220,9 +212,7 @@ function handleChangeStatus(event) {
   let countProgress = 0
 
   data.forEach((item) => {
-    if (item.status == 'inProgress') {
-      countProgress++
-    }
+    item.status == 'inProgress' ? countProgress++ : ''
   })
 
   if (role == 'select' && countProgress == 6 && target.value == 'inProgress') {
