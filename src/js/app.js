@@ -11,12 +11,15 @@ const todoElement = $('#todo')
 const btnAddElement = $('#btnAdd')
 const btnRemoveAllElement = $('#btnRemoveAll')
 const modalElement = $('#modal')
-const btnSaveModalElement = $('#saveBtnModal')
+const modalEditElement = $('#editModal')
+// const btnSaveModalElement = $('#saveBtnModal')
+// const btnSaveEditBtnModal = $('#saveEditBtnModal')
 const modalTitleElement = $('#modalTitle')
 const modalTextareaElement = $('#modalTextarea')
 const selectColorElement = $('#selectColor')
 const selectUserElement = $('#selectUser')
 const formElement = $('#form')
+const editFormElement = $('#editForm')
 const inProgressElement = $('#inProgress')
 const doneElement = $('#done')
 const clockElement = $('#clock')
@@ -25,20 +28,25 @@ const contentCountProgress = $('#contentCountProgress')
 const contentCountDone = $('#contentCountDone')
 const rowElement = $('#row')
 const modalInstance = Modal.getOrCreateInstance(modalElement)
+const modalEditInstance = Modal.getOrCreateInstance(modalEditElement)
+const modalEditTitleELement = $('#modalEditTitle')
+const modalEditTextareaElement = $('#modalEditTextarea')
+const selectEditColorElement = $('#selectEditColor')
+const selectEditUserElement = $('#selectEditUser')
 
-
+// !========================================================================
 // Init
 render(data, todoElement, inProgressElement, doneElement)
 renderCounters(data, contentCountTodo, contentCountProgress, contentCountDone)
 
 // Listener
 btnAddElement.addEventListener('click', getModal)
-btnSaveModalElement.addEventListener('click', handleSubmitForm) // сделать submit
+formElement.addEventListener('submit', handleSubmitForm)
 rowElement.addEventListener('click', handleClickDelete)
 window.addEventListener('beforeunload', handleBeforeUnload)
 rowElement.addEventListener('change', handleChangeStatus)
 btnRemoveAllElement.addEventListener('click', handleClickRemoveAll)
-
+rowElement.addEventListener('click', handleEditModal)
 // LocalStorage
 function handleBeforeUnload() {
   setData(data)
@@ -52,7 +60,7 @@ function setData(source) {
 
 // Constructor
 function Todo(title, description, bgColor, user) {
-  this.id = new Date().getTime()
+  this.id = crypto.randomUUID()
   this.date = new Date().toISOString()
   this.title = title
   this.description = description
@@ -68,7 +76,7 @@ function buildTodoTemplate(todo) {
   const statusInProgress = todo.status == 'inProgress' ? 'selected' : ''
   const statusDone = todo.status == 'Done' ? 'selected' : ''
   return `
-    <div class="card__wrapper ${todo.bgColor}">
+    <div id="${todo.id}" class="card__wrapper ${todo.bgColor}">
       <div class="card__top">
         <h2 class="card__title">${todo.title}</h2>
         <span class="card__date">${date}</span>
@@ -76,17 +84,16 @@ function buildTodoTemplate(todo) {
       <div class="card__descr">${todo.description}</div>
       <div class="card__user">${todo.user}</div>
       <select class="card__select" data-role="select" data-id="${todo.id}">
-        <option selected>Select status</option>
         <option value="Todo" ${statusTodo}>Todo</option>
         <option value="inProgress" ${statusInProgress}>inProgress</option>
         <option value="Done" ${statusDone}>Done</option>
       </select>
-      <button class="btn btn-primary">Edit</button>
+      <button class="btn btn-primary" data-role="edit">Edit</button>
       <button class="btn btn-danger" data-role="delete" data-id="${todo.id}">Remove</button>
     </div>
   `
 }
-// Сounter drawing
+// counter template
 function buildTemplateTodo(countTodo) {
   return `
     <h2 class="content__title">Todo</h2>
@@ -120,6 +127,7 @@ function handleSubmitForm(event) {
   renderCounters(data, contentCountTodo, contentCountProgress, contentCountDone)
   setData(data)
   modalInstance.hide()
+  modalEditInstance.hide()
   formElement.reset()
 }
 // Delete card
@@ -133,6 +141,7 @@ function handleClickDelete(event) {
     renderCounters(data, contentCountTodo, contentCountProgress, contentCountDone)
   }
 }
+
 // Remove All
 function handleClickRemoveAll() {
   const messageWarning = confirm('are you sure you want to delete all todos')
@@ -144,7 +153,6 @@ function handleClickRemoveAll() {
     renderCounters(data, contentCountTodo, contentCountProgress, contentCountDone)
   }
 }
-
 
 // Render
 function render(data, todoColumn, progressColumn, doneColumn) {
@@ -171,8 +179,25 @@ function render(data, todoColumn, progressColumn, doneColumn) {
 // Modal
 function getModal() {
   modalInstance.show()
+  modalTitleElement.focus()
 }
-
+// Edit Modal
+function handleEditModal(event) {
+  const { target } = event
+  const { role } = target.dataset
+  const parentNode = target.closest('.card__wrapper')
+  if (role == 'edit') {
+    data.forEach((item) => {
+      if (item.id == parentNode.id) {
+        modalEditTitleELement.value = item.title
+        modalEditTextareaElement.value = item.description
+        selectEditColorElement.value = item.bgColor
+        selectEditUserElement.value = item.user
+      }
+    })
+    modalEditInstance.show()
+  }
+}
 // Clock
 function padTo2Digits(num) {
   return String(num).padStart(2, '0');
