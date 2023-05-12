@@ -61,14 +61,14 @@
             <input id="modalTitle" class="modal__input" type="text" placeholder="Title">
             <textarea id="modalTextarea" class="modal__textarea" cols="30" rows="10"
               placeholder="Enter text"></textarea>
-            <select id="selectColor" name="selectColor" class="card__select">
+            <select id="selectColor" class="card__select">
               <option selected>Color</option>
               <option value="bg-primary text-white">Primary</option>
               <option value="bg-info text-dark">Info</option>
               <option value="bg-warning text-dark">Warning</option>
               <option value="bg-success text-white">Success</option>
             </select>
-            <select id="selectUser" name="selectUser" class="card__select">
+            <select id="selectUser" class="card__select">
               <option selected>Users</option>
               <option value="Ivan">Ivan</option>
               <option value="Inna">Inna</option>
@@ -83,7 +83,6 @@
             </div>
           </form>
         </div>
-
       </div>
     </div>
   </div>
@@ -100,14 +99,17 @@
             <input id="modalEditTitle" class="modal__input" type="text" placeholder="Title">
             <textarea id="modalEditTextarea" class="modal__textarea" cols="30" rows="10"
               placeholder="Enter text"></textarea>
-            <select id="selectEditColor" name="selectColor" class="card__select">
+            <select id="selectEditColor" class="card__select">
               <option selected>Color</option>
               <option value="bg-primary text-white">Primary</option>
               <option value="bg-info text-dark">Info</option>
               <option value="bg-warning text-dark">Warning</option>
               <option value="bg-success text-white">Success</option>
             </select>
-            <select id="selectEditUser" name="selectUser" class="card__select">
+            <input type="hidden" id="editId">
+            <input type="hidden" id="editStatus">
+            <input type="hidden" id="editDate">
+            <select id="selectEditUser" class="card__select">
               <option selected>Users</option>
               <option value="Ivan">Ivan</option>
               <option value="Inna">Inna</option>

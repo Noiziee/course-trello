@@ -1,3 +1,6 @@
+import { Todo } from './constructor'
+
+// bootstrap import
 import { Modal } from 'bootstrap'
 
 let data = getData()
@@ -12,8 +15,6 @@ const btnAddElement = $('#btnAdd')
 const btnRemoveAllElement = $('#btnRemoveAll')
 const modalElement = $('#modal')
 const modalEditElement = $('#editModal')
-// const btnSaveModalElement = $('#saveBtnModal')
-// const btnSaveEditBtnModal = $('#saveEditBtnModal')
 const modalTitleElement = $('#modalTitle')
 const modalTextareaElement = $('#modalTextarea')
 const selectColorElement = $('#selectColor')
@@ -29,10 +30,16 @@ const contentCountDone = $('#contentCountDone')
 const rowElement = $('#row')
 const modalInstance = Modal.getOrCreateInstance(modalElement)
 const modalEditInstance = Modal.getOrCreateInstance(modalEditElement)
+// ==========Modal Edit==================================
 const modalEditTitleELement = $('#modalEditTitle')
 const modalEditTextareaElement = $('#modalEditTextarea')
 const selectEditColorElement = $('#selectEditColor')
 const selectEditUserElement = $('#selectEditUser')
+const editId = $('#editId')
+const editStatus = $('#editStatus')
+const editDate = $('#editDate')
+
+
 
 // !========================================================================
 // Init
@@ -47,6 +54,7 @@ window.addEventListener('beforeunload', handleBeforeUnload)
 rowElement.addEventListener('change', handleChangeStatus)
 btnRemoveAllElement.addEventListener('click', handleClickRemoveAll)
 rowElement.addEventListener('click', handleEditModal)
+editFormElement.addEventListener('submit', handleSubmitEditForm)
 // LocalStorage
 function handleBeforeUnload() {
   setData(data)
@@ -56,17 +64,6 @@ function getData() {
 }
 function setData(source) {
   localStorage.setItem('data', JSON.stringify(source))
-}
-
-// Constructor
-function Todo(title, description, bgColor, user) {
-  this.id = crypto.randomUUID()
-  this.date = new Date().toISOString()
-  this.title = title
-  this.description = description
-  this.user = user
-  this.bgColor = bgColor
-  this.status = 'Todo'
 }
 
 // build
@@ -112,7 +109,8 @@ function buildTemplateDone(countDone) {
     <span>${countDone}</span>
   `
 }
-// Handlers
+// Handlers =========================================
+// Main form
 function handleSubmitForm(event) {
   event.preventDefault()
 
@@ -125,11 +123,30 @@ function handleSubmitForm(event) {
   data.push(todo)
   render(data, todoElement, inProgressElement, doneElement)
   renderCounters(data, contentCountTodo, contentCountProgress, contentCountDone)
-  setData(data)
   modalInstance.hide()
+  formElement.reset()
+}
+// Edit form =================================
+function handleSubmitEditForm(event) {
+  event.preventDefault()
+
+  const title = modalEditTitleELement.value
+  const description = modalEditTextareaElement.value
+  const color = selectEditColorElement.value
+  const user = selectEditUserElement.value
+  const id = editId.value
+  const date = editDate.value
+  const status = editStatus.value
+
+  data = data.filter((item) => item.id != id)
+  const todo = new Todo(title, description, color, user, id, date, status)
+  data.push(todo)
+  render(data, todoElement, inProgressElement, doneElement)
+  renderCounters(data, contentCountTodo, contentCountProgress, contentCountDone)
   modalEditInstance.hide()
   formElement.reset()
 }
+
 // Delete card
 function handleClickDelete(event) {
   const { target } = event
@@ -191,8 +208,11 @@ function handleEditModal(event) {
       if (item.id == parentNode.id) {
         modalEditTitleELement.value = item.title
         modalEditTextareaElement.value = item.description
-        selectEditColorElement.value = item.bgColor
+        selectColorElement.value = item.bgcolor
         selectEditUserElement.value = item.user
+        editId.value = item.id
+        editStatus.value = item.status
+        editDate.value = item.date
       }
     })
     modalEditInstance.show()
