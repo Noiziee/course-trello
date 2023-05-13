@@ -38,7 +38,8 @@ const selectEditUserElement = $('#selectEditUser')
 const editId = $('#editId')
 const editStatus = $('#editStatus')
 const editDate = $('#editDate')
-
+// ================url=================================
+const urlUsers = 'https://jsonplaceholder.typicode.com/users'
 
 
 // !========================================================================
@@ -279,3 +280,27 @@ function handleChangeStatus(event) {
     renderCounters(data, contentCountTodo, contentCountProgress, contentCountDone)
   }
 }
+// getUsers
+async function getUsers(url) {
+  const response = await fetch(url)
+  if (!response.ok) {
+    throw new Error(`Ошибка по адресу ${url}, статус ошибки ${response}`)
+  }
+
+  return await response.json()
+}
+
+getUsers(urlUsers)
+  .then((data) => {
+    data.forEach((user) => {
+      const template = `
+        <option value="${user.name}">${user.name}</option>
+      `
+      selectUserElement.innerHTML += template
+
+      const templateEdit = `
+        <option value="${user.name}">${user.name}</option>
+      `
+      selectEditUserElement.innerHTML += templateEdit
+    })
+  })
