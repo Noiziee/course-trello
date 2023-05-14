@@ -1,4 +1,5 @@
 import { Todo } from './constructor'
+import { clock } from './clock'
 
 // bootstrap import
 import { Modal } from 'bootstrap'
@@ -23,7 +24,6 @@ const formElement = $('#form')
 const editFormElement = $('#editForm')
 const inProgressElement = $('#inProgress')
 const doneElement = $('#done')
-const clockElement = $('#clock')
 const contentCountTodo = $('#contentCountTodo')
 const contentCountProgress = $('#contentCountProgress')
 const contentCountDone = $('#contentCountDone')
@@ -41,7 +41,8 @@ const editDate = $('#editDate')
 // ================url=================================
 const urlUsers = 'https://jsonplaceholder.typicode.com/users'
 
-
+// Clock
+setInterval(clock, 100)
 // !========================================================================
 // Init
 render(data, todoElement, inProgressElement, doneElement)
@@ -56,6 +57,7 @@ rowElement.addEventListener('change', handleChangeStatus)
 btnRemoveAllElement.addEventListener('click', handleClickRemoveAll)
 rowElement.addEventListener('click', handleEditModal)
 editFormElement.addEventListener('submit', handleSubmitEditForm)
+
 // LocalStorage
 function handleBeforeUnload() {
   setData(data)
@@ -67,7 +69,7 @@ function setData(source) {
   localStorage.setItem('data', JSON.stringify(source))
 }
 
-// build
+// buildTemplate
 function buildTodoTemplate(todo) {
   const date = new Date(todo.date).toLocaleString()
   const statusTodo = todo.status == 'Todo' ? 'selected' : ''
@@ -206,7 +208,7 @@ function handleEditModal(event) {
       if (item.id == parentNode.id) {
         modalEditTitleELement.value = item.title
         modalEditTextareaElement.value = item.description
-        selectColorElement.value = item.bgcolor
+        selectEditColorElement.value = item.bgColor
         selectEditUserElement.value = item.user
         editId.value = item.id
         editStatus.value = item.status
@@ -216,16 +218,6 @@ function handleEditModal(event) {
     modalEditInstance.show()
   }
 }
-// Clock
-function padTo2Digits(num) {
-  return String(num).padStart(2, '0');
-}
-function clock() {
-  const hours = new Date().getHours()
-  const minutes = new Date().getMinutes()
-  clockElement.innerHTML = `${hours}:${padTo2Digits(minutes)}`
-}
-setInterval(clock, 100)
 
 // Render count
 function renderCounters(collection, todoCount, inProgressCount, doneCount) {
