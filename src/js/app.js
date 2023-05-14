@@ -118,7 +118,7 @@ function handleClickDelete(event) {
 function handleClickRemoveAll() {
   const messageWarning = confirm('are you sure you want to delete all todos')
   if (messageWarning) {
-    data.length = 0
+    data = data.filter((item) => item.status != 'done')
     render(data, todoElement, inProgressElement, doneElement)
     renderCounters(data, contentCountTodo, contentCountProgress, contentCountDone)
   }
