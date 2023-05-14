@@ -2,45 +2,38 @@ import { Todo } from './constructor'
 import { clock } from './clock'
 import { getUsers } from './users'
 import { buildTodoTemplate, buildTemplateTodo, buildTemplateProgress, buildTemplateDone } from './template'
-
+import { handleModal, modalInstance } from './modal'
 // bootstrap import
 import { Modal } from 'bootstrap'
 
-
-// Helpers
-function $(selector) {
-  return document.querySelector(selector)
-}
-
 // Variables
 let data = getData()
-const todoElement = $('#todo')
-const btnAddElement = $('#btnAdd')
-const btnRemoveAllElement = $('#btnRemoveAll')
-const modalElement = $('#modal')
-const modalEditElement = $('#editModal')
-const modalTitleElement = $('#modalTitle')
-const modalTextareaElement = $('#modalTextarea')
-const selectColorElement = $('#selectColor')
-const selectUserElement = $('#selectUser')
-const formElement = $('#form')
-const editFormElement = $('#editForm')
-const inProgressElement = $('#inProgress')
-const doneElement = $('#done')
-const contentCountTodo = $('#contentCountTodo')
-const contentCountProgress = $('#contentCountProgress')
-const contentCountDone = $('#contentCountDone')
-const rowElement = $('#row')
-const modalInstance = Modal.getOrCreateInstance(modalElement)
+const todoElement = document.querySelector('#todo')
+const btnAddElement = document.querySelector('#btnAdd')
+const btnRemoveAllElement = document.querySelector('#btnRemoveAll')
+
+const modalEditElement = document.querySelector('#editModal')
+const modalTitleElement = document.querySelector('#modalTitle')
+const modalTextareaElement = document.querySelector('#modalTextarea')
+const selectColorElement = document.querySelector('#selectColor')
+const selectUserElement = document.querySelector('#selectUser')
+const formElement = document.querySelector('#form')
+const editFormElement = document.querySelector('#editForm')
+const inProgressElement = document.querySelector('#inProgress')
+const doneElement = document.querySelector('#done')
+const contentCountTodo = document.querySelector('#contentCountTodo')
+const contentCountProgress = document.querySelector('#contentCountProgress')
+const contentCountDone = document.querySelector('#contentCountDone')
+const rowElement = document.querySelector('#row')
 const modalEditInstance = Modal.getOrCreateInstance(modalEditElement)
 // ==========Modal Edit==================================
-const modalEditTitleELement = $('#modalEditTitle')
-const modalEditTextareaElement = $('#modalEditTextarea')
-const selectEditColorElement = $('#selectEditColor')
-const selectEditUserElement = $('#selectEditUser')
-const editId = $('#editId')
-const editStatus = $('#editStatus')
-const editDate = $('#editDate')
+const modalEditTitleELement = document.querySelector('#modalEditTitle')
+const modalEditTextareaElement = document.querySelector('#modalEditTextarea')
+const selectEditColorElement = document.querySelector('#selectEditColor')
+const selectEditUserElement = document.querySelector('#selectEditUser')
+const editId = document.querySelector('#editId')
+const editStatus = document.querySelector('#editStatus')
+const editDate = document.querySelector('#editDate')
 // ================url=================================
 const urlUsers = 'https://jsonplaceholder.typicode.com/users'
 
@@ -52,7 +45,7 @@ render(data, todoElement, inProgressElement, doneElement)
 renderCounters(data, contentCountTodo, contentCountProgress, contentCountDone)
 
 // Listener
-btnAddElement.addEventListener('click', getModal)
+btnAddElement.addEventListener('click', handleModal)
 formElement.addEventListener('submit', handleSubmitForm)
 rowElement.addEventListener('click', handleClickDelete)
 window.addEventListener('beforeunload', handleBeforeUnload)
@@ -72,8 +65,6 @@ function setData(source) {
   localStorage.setItem('data', JSON.stringify(source))
 }
 
-
-// Handlers =========================================
 // Main form
 function handleSubmitForm(event) {
   event.preventDefault()
@@ -150,11 +141,6 @@ function render(data, todoColumn, progressColumn, doneColumn) {
   doneColumn.innerHTML = doneTemplates
 }
 
-// Modal
-function getModal() {
-  modalInstance.show()
-  modalTitleElement.focus()
-}
 // Edit Modal
 function handleEditModal(event) {
   const { target } = event
