@@ -4,13 +4,14 @@ import { clock } from './clock'
 // bootstrap import
 import { Modal } from 'bootstrap'
 
-let data = getData()
+
 // Helpers
 function $(selector) {
   return document.querySelector(selector)
 }
 
 // Variables
+let data = getData()
 const todoElement = $('#todo')
 const btnAddElement = $('#btnAdd')
 const btnRemoveAllElement = $('#btnRemoveAll')
@@ -72,9 +73,9 @@ function setData(source) {
 // buildTemplate
 function buildTodoTemplate(todo) {
   const date = new Date(todo.date).toLocaleString()
-  const statusTodo = todo.status == 'Todo' ? 'selected' : ''
+  const statusTodo = todo.status == 'todo' ? 'selected' : ''
   const statusInProgress = todo.status == 'inProgress' ? 'selected' : ''
-  const statusDone = todo.status == 'Done' ? 'selected' : ''
+  const statusDone = todo.status == 'done' ? 'selected' : ''
   return `
     <div id="${todo.id}" class="card__wrapper ${todo.bgColor}">
       <div class="card__top">
@@ -84,9 +85,9 @@ function buildTodoTemplate(todo) {
       <div class="card__descr">${todo.description}</div>
       <div class="card__user">${todo.user}</div>
       <select class="card__select" data-role="select" data-id="${todo.id}">
-        <option value="Todo" ${statusTodo}>Todo</option>
+        <option value="todo" ${statusTodo}>Todo</option>
         <option value="inProgress" ${statusInProgress}>inProgress</option>
-        <option value="Done" ${statusDone}>Done</option>
+        <option value="done" ${statusDone}>Done</option>
       </select>
       <button class="btn btn-primary" data-role="edit">Edit</button>
       <button class="btn btn-danger" data-role="delete" data-id="${todo.id}">Remove</button>
@@ -178,16 +179,12 @@ function render(data, todoColumn, progressColumn, doneColumn) {
   let doneTemplates = ''
   data.forEach((item) => {
     const template = buildTodoTemplate(item)
-    if (item.status == 'Todo') {
-      todoTemplates += template
-    }
-    if (item.status == 'inProgress') {
-      inProgressTemplates += template
-    }
-    if (item.status == 'Done') {
-      doneTemplates += template
-    }
+
+    item.status == 'todo' ? todoTemplates += template : ''
+    item.status == 'inProgress' ? inProgressTemplates += template : ''
+    item.status == 'done' ? doneTemplates += template : ''
   })
+
   todoColumn.innerHTML = todoTemplates
   progressColumn.innerHTML = inProgressTemplates
   doneColumn.innerHTML = doneTemplates
@@ -226,9 +223,9 @@ function renderCounters(collection, todoCount, inProgressCount, doneCount) {
   let done = 0
 
   collection.forEach((item) => {
-    item.status == 'Todo' ? todo++ : ''
+    item.status == 'todo' ? todo++ : ''
     item.status == 'inProgress' ? inProgress++ : ''
-    item.status == 'Done' ? done++ : ''
+    item.status == 'done' ? done++ : ''
   })
 
   const templateTodo = buildTemplateTodo(todo)
@@ -254,11 +251,11 @@ function handleChangeStatus(event) {
     alert('No more than 6 cases can be in this column')
 
     data.forEach((item) => {
-      if (item.status == 'Todo') {
-        target.value = 'Todo'
+      if (item.status == 'todo') {
+        target.value = 'todo'
       }
-      if (item.status == 'Done') {
-        target.value = 'Done'
+      if (item.status == 'done') {
+        target.value = 'done'
       }
     })
     return

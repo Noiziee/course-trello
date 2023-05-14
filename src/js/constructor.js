@@ -1,5 +1,5 @@
 // Constructor
-function Todo(title, description, bgColor, user, id = crypto.randomUUID(), date = new Date().toISOString(), status = 'Todo') {
+function Todo(title, description, bgColor, user, id = crypto.randomUUID(), date = new Date().toISOString(), status = 'todo') {
   this.id = id
   this.date = date
   this.title = title
