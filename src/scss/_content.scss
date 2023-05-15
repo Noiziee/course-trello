@@ -22,6 +22,7 @@
 
     span {
       margin-right: 10px;
+      font-weight: 700;
     }
   }
 
@@ -32,6 +33,7 @@
   }
 
   &__col {
+    background-color: #fff;
     width: calc(33.33333% - 10px);
     border: 1px solid #000;
     border-radius: 10px;
