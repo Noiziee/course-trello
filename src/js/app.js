@@ -156,7 +156,6 @@ function handleChangeStatus(event) {
 
   if (role == 'select' && countProgress == 6 && target.value == 'inProgress') {
     alert('No more than 6 cases can be in this column')
-
     data.forEach((item) => {
       if (item.status == 'todo') {
         target.value = 'todo'

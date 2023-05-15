@@ -29,7 +29,6 @@ function renderCounters(collection, todoCount, inProgressCount, doneCount) {
     item.status == 'inProgress' ? inProgress++ : ''
     item.status == 'done' ? done++ : ''
   })
-
   const templateTodo = buildTemplateTodo(todo)
   const templateProgress = buildTemplateProgress(inProgress)
   const templateDone = buildTemplateDone(done)
